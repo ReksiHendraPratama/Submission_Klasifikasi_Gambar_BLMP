@@ -62,7 +62,6 @@ Model dibangun menggunakan arsitektur **Sequential** dengan mengadopsi *transfer
 **Callback** digunakan untuk optimasi pelatihan:
 - **EarlyStopping**: Menghentikan pelatihan jika `val_accuracy` tidak meningkat setelah 5 epoch (dengan *baseline* 96%).
 - **ModelCheckpoint**: Menyimpan model terbaik berdasarkan `val_loss` ke `best_model.keras`.
-- **ReduceLROnPlateau**: Mengurangi *learning rate* sebesar 50% jika `val_accuracy` stagnan selama 3 epoch.
 
 ---
 
