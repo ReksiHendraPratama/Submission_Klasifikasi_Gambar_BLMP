@@ -39,28 +39,12 @@ Dataset **Animal-10** (diunduh dari [Kaggle](https://www.kaggle.com/datasets/ale
 - **Test Set**: ~1.230 gambar (10%) untuk evaluasi akhir pada data yang belum pernah dilihat.
 
 **Augmentasi data** diterapkan pada *training set* menggunakan `ImageDataGenerator` untuk meningkatkan keragaman citra dan mencegah *overfitting*. Teknik augmentasi meliputi:
-- Rotasi acak (hingga 30 derajat).
+- Rotasi acak (hingga 20 derajat).
 - *Horizontal flip*.
 - *Zoom* acak.
 - Pergeseran piksel (lebar dan tinggi).
 - Normalisasi piksel (rescaling ke rentang 0-1).
 
-Struktur direktori dataset:
-```
-/content/split_dataset/
-├── train/
-│   ├── dog/
-│   ├── spider/
-│   ├── horse/
-├── validation/
-│   ├── dog/
-│   ├── spider/
-│   ├── horse/
-├── test/
-│   ├── dog/
-│   ├── spider/
-│   ├── horse/
-```
 
 ---
 
@@ -117,59 +101,7 @@ Proyek ini adalah bukti komitmen saya untuk menguasai *machine learning* dan *co
 
 ---
 
-## 🚀 Cara Menjalankan Proyek
 
-### Prasyarat
-- Python 3.8+.
-- Google Colab dengan GPU T4.
-- Dependensi: Lihat `requirements.txt`.
-
-### Langkah-langkah
-1. **Unduh Dataset**:
-   - Ambil dataset dari [Kaggle](https://www.kaggle.com/datasets/alessiocorrado99/animals10).
-   - Ekstrak ke `/content/dataset` dengan subfolder `dog`, `spider`, `horse`.
-
-2. **Siapkan Lingkungan**:
-   - Buka `Submission_Klasifikasi_Gambar_Reksi_Hendra_Pratama.ipynb` di Colab.
-   - Instal dependensi:
-     ```bash
-     !pip install tensorflowjs
-     !pip freeze > requirements.txt
-     ```
-
-3. **Jalankan Notebook**:
-   - Proses data, latih model, evaluasi, dan konversi ke SavedModel, TF-Lite, TFJS.
-   - Lakukan inferensi pada gambar baru.
-
-4. **Simpan Hasil**:
-   - Model disimpan di `best_model.keras`, `saved_model`, `model.tflite`, `tfjs_model`.
-   - Cadangkan ke Google Drive:
-     ```python
-     from google.colab import drive
-     drive.mount('/content/drive')
-     !cp -r saved_model model.tflite tfjs_model /content/drive/MyDrive/
-     ```
-
-5. **Submission**:
-   - Zip artefak:
-     ```python
-     !zip -r submission.zip saved_model model.tflite tfjs_model notebook.ipynb
-     ```
-
----
-
-## 💡 Catatan dan Saran
-
-- **Troubleshooting**:
-  - Jika pelatihan lambat, kurangi `batch_size` ke 16.
-  - Pastikan TensorFlow >= 2.16.0 untuk format `.keras`.
-  - Jika akurasi rendah, periksa *confusion matrix* atau tambah augmentasi.
-- **Peningkatan**:
-  - Eksperimen dengan EfficientNetB0 untuk akurasi lebih tinggi.
-  - Tambah augmentasi seperti *shear* atau *brightness*.
-  - Coba *learning rate* 1e-4 untuk stabilitas lebih baik.
-
----
 
 ## 📬 Kontak dan Kontribusi
 
