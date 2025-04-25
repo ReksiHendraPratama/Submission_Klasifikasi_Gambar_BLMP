@@ -56,7 +56,6 @@ Model dibangun menggunakan arsitektur **Sequential** dengan mengadopsi *transfer
 - **Dense**: Lapisan keluaran dengan aktivasi *softmax* untuk tiga kelas (anjing, laba-laba, kuda).
 
 **Konfigurasi Pelatihan**:
-- **Optimizer**: Adam dengan *learning rate* 0.0005 untuk konvergensi cepat dan stabil.
 - **Loss Function**: *Categorical Crossentropy* untuk klasifikasi multi-kelas.
 - **Metrik**: Akurasi.
 
@@ -64,6 +63,31 @@ Model dibangun menggunakan arsitektur **Sequential** dengan mengadopsi *transfer
 - **EarlyStopping**: Menghentikan pelatihan jika `val_accuracy` tidak meningkat setelah 5 epoch (dengan *baseline* 96%).
 - **ModelCheckpoint**: Menyimpan model terbaik berdasarkan `val_loss` ke `best_model.keras`.
 - **ReduceLROnPlateau**: Mengurangi *learning rate* sebesar 50% jika `val_accuracy` stagnan selama 3 epoch.
+
+---
+
+## **💡 Cara Menjalankan**  
+### **1️⃣ Install Dependensi**  
+Pastikan Anda memiliki Python dan semua library yang diperlukan dengan menjalankan perintah berikut:  
+```bash  
+pip install -r requirements.txt  
+```  
+
+### **2️⃣ Jalankan Model untuk Inferensi**  
+Gunakan model yang telah dilatih untuk melakukan prediksi pada gambar baru:  
+```bash  
+python predict.py --image_path "images/sample.jpg"  
+```  
+
+### **3️⃣ Konversi Model ke Format Lain**  
+#### **Konversi ke TFLite**  
+```bash  
+python convert_to_tflite.py  
+```  
+#### **Konversi ke TensorFlow.js**  
+```bash  
+tensorflowjs_converter --input_format=keras model.h5 tfjs_model  
+```  
 
 ---
 
